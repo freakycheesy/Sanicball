@@ -10272,7 +10272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11451262, guid: e5d237d0846d27944a3a24718ef6c22f, type: 3}
       propertyPath: m_Text
-      value: Visit the game's site (sanicball.bdgr.zone)
+      value: Visit the game's site (GameJolt page)
       objectReference: {fileID: 0}
     - target: {fileID: 11478396, guid: e5d237d0846d27944a3a24718ef6c22f, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -10400,7 +10400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118859ac196384540b90b00e00fa2569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: https://sanicball.bdgr.zone
+  url: https://gamejolt.com/games/sanicball/1079172
 --- !u!1001 &1071631087
 PrefabInstance:
   m_ObjectHideFlags: 0
