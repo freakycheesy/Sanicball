@@ -9,6 +9,8 @@ namespace SanicballCore.Server
         public string ServerName { get; set; }
         public bool ShowOnList { get; set; }
 		public string[] ServerListURLs { get; set; }
+        public int stageCount { get; set; }
+        public CharacterTier[] characterTiers { get; set; }
         public int PrivatePort { get; set; }
         public string PublicIP { get; set; }
         public int PublicPort { get; set; }

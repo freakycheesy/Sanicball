@@ -108,7 +108,7 @@ namespace Sanicball
                 aSource.volume = Mathf.Min(aSource.volume + Time.deltaTime * 0.1f, 0.5f);
             }
             //If it's not playing but supposed to play, change song
-            if ((!aSource.isPlaying || GameInput.IsChangingSong()) && isPlaying)
+            if ((!aSource.isPlaying || GameInput.IsChangingSong()) && isPlaying && Time.timeScale > 0)
             {
                 if (currentSongID < playlist.Length - 1)
                 {

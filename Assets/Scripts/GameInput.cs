@@ -158,6 +158,8 @@ namespace Sanicball
 
                 case ControlType.Joystick4:
                     return new Vector3(Input.GetAxis(joystick4LeftX), 0, Input.GetAxis(joystick4LeftY));
+                case ControlType.Touch:
+                    return TouchGameInput.GetMovement();
             }
             return Vector2.zero;
         }
@@ -184,6 +186,8 @@ namespace Sanicball
 
                 case ControlType.Joystick4:
                     return new Vector2(Input.GetAxis(joystick4RightX), Input.GetAxis(joystick4RightY));
+                case ControlType.Touch:
+                    return TouchGameInput.GetCamera();
             }
             return Vector2.zero;
         }
@@ -294,6 +298,8 @@ namespace Sanicball
 
                 case ControlType.Joystick4:
                     return Input.GetKey(KeyCode.Joystick4Button1);
+                case ControlType.Touch:
+                    return TouchGameInput.brake;
             }
             return false;
         }
@@ -316,6 +322,8 @@ namespace Sanicball
 
                 case ControlType.Joystick4:
                     return Input.GetKeyDown(KeyCode.Joystick4Button0);
+                case ControlType.Touch:
+                    return TouchGameInput.jump;
             }
             return false;
         }
@@ -338,6 +346,8 @@ namespace Sanicball
 
                 case ControlType.Joystick4:
                     return Input.GetKeyDown(KeyCode.Joystick4Button3);
+                case ControlType.Touch:
+                    return TouchGameInput.respawn;
             }
             return false;
         }
@@ -360,6 +370,8 @@ namespace Sanicball
 
                 case ControlType.Joystick4:
                     return Input.GetKeyDown(KeyCode.Joystick4Button2);
+                case ControlType.Touch:
+                    return TouchGameInput.openingMenu;
             }
             return false;
         }
@@ -370,7 +382,7 @@ namespace Sanicball
 
         public static bool IsChangingSong()
         {
-            return (Input.GetKeyDown(ActiveData.Keybinds[Keybind.NextSong]) && !KeyboardDisabled) || Input.GetKeyDown(KeyCode.JoystickButton6);
+            return (Input.GetKeyDown(ActiveData.Keybinds[Keybind.NextSong]) && !KeyboardDisabled) || Input.GetKeyDown(KeyCode.JoystickButton6) || (TouchGameInput.openingMenu && TouchGameInput.canChangeMusic);
         }
 
         public static bool IsOpeningChat()

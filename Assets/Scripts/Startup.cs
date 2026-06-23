@@ -1,5 +1,6 @@
 ﻿using Sanicball.Data;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Sanicball
@@ -26,6 +27,7 @@ namespace Sanicball
             {
                 //Set nickname before continuing
                 setNicknameGroup.alpha = 1f;
+                EventSystem.current.SetSelectedGameObject(nicknameField.gameObject);
             }
             else
             {

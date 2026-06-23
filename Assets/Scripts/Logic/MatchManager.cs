@@ -390,7 +390,7 @@ namespace Sanicball.Logic
             messenger.UpdateListeners();
 
             //Pausing/unpausing
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7) || TouchGameInput.pause)
             {
                 if (!UI.PauseMenu.GamePaused)
                 {

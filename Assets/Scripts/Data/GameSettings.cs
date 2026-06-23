@@ -7,7 +7,7 @@ namespace Sanicball.Data
     {
         [Header("Online")]
         public string nickname = "";
-		public string serverListURL = "https://sanicball.bdgr.zone/servers/";
+        public string serverListURL = "https://sanicball.bdgr.zone/servers/";
 
         public string gameJoltUsername;
         public string gameJoltToken;
@@ -27,7 +27,7 @@ namespace Sanicball.Data
         public bool shadows = true;
         public bool motionBlur = false;
         public bool bloom = false;
-		public ReflectionQuality reflectionQuality = ReflectionQuality.Off;
+        public ReflectionQuality reflectionQuality = ReflectionQuality.Off;
         public bool eSportsReady = false;
 
         [Header("Gameplay")]
@@ -49,7 +49,7 @@ namespace Sanicball.Data
         public void CopyValues(GameSettings original)
         {
             nickname = original.nickname;
-			serverListURL = original.serverListURL;
+            serverListURL = original.serverListURL;
             gameJoltUsername = original.gameJoltUsername;
             gameJoltToken = original.gameJoltToken;
 
@@ -98,28 +98,29 @@ namespace Sanicball.Data
 
         public void Apply(bool changeWindow)
         {
-            if (changeWindow)
+            if (Application.isMobilePlatform || Application.isConsolePlatform)
             {
-                //Resolution and fullscreen
-                if (resolution < Screen.resolutions.Length)
-                {
-                    Resolution res = Screen.resolutions[(int)resolution];
-                    if (Screen.width != res.width || Screen.height != res.height || fullscreen != Screen.fullScreen)
-                        Screen.SetResolution(res.width, res.height, fullscreen);
-                }
+                Debug.LogWarning("Cannot change window size on mobile");
             }
+            else
+            {
+                if (changeWindow)
+                {
+                    //Resolution and fullscreen
+                    if (resolution < Screen.resolutions.Length)
+                    {
+                        Resolution res = Screen.resolutions[(int)resolution];
+                        if (Screen.width != res.width || Screen.height != res.height || fullscreen != Screen.fullScreen)
+                            Screen.SetResolution(res.width, res.height, fullscreen);
+                    }
+                }
+                //Shadows
+                QualitySettings.shadows = shadows ? ShadowQuality.All : ShadowQuality.Disable;
+            }      
             //AA
             QualitySettings.antiAliasing = aa;
             //Vsync
             if (vsync) { QualitySettings.vSyncCount = 1; } else { QualitySettings.vSyncCount = 0; }
-            //Shadows
-            GameObject dl = GameObject.Find("Directional light");
-            if (dl != null)
-            {
-                LightShadows ls;
-                if (shadows) { ls = LightShadows.Hard; } else { ls = LightShadows.None; }
-                dl.GetComponent<Light>().shadows = ls;
-            }
             //Volume
             AudioListener.volume = soundVolume;
             //Mute
@@ -127,7 +128,7 @@ namespace Sanicball.Data
             if (music)
                 music.GetComponent<AudioSource>().mute = !music;
             //Camera effects
-            foreach(var cam in GameObject.FindObjectsOfType<CameraEffects>())
+            foreach (var cam in GameObject.FindObjectsOfType<CameraEffects>())
             {
                 cam.EnableEffects();
             }

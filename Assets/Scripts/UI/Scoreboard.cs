@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using Sanicball.Logic;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Sanicball.Logic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Sanicball.UI
 {
@@ -16,6 +18,11 @@ namespace Sanicball.UI
         private SlideCanvasGroup slide = null;
 
         private bool slideShouldOpen = false;
+        public GameObject selectedButton;
+        private void OnEnable()
+        {
+            EventSystem.current.SetSelectedGameObject(selectedButton);
+        }
 
         private List<ScoreboardEntry> activeEntries = new List<ScoreboardEntry>();
 
@@ -42,6 +49,34 @@ namespace Sanicball.UI
                     e.Init(manager[i]);
                     activeEntries.Add(e);
                 }
+            }
+        }
+
+        public void BackToLobby()
+        {
+            var matchManager = FindObjectOfType<MatchManager>();
+            if (matchManager)
+            {
+                matchManager.RequestLoadLobby();
+            }
+            else
+            {
+                Debug.LogError("Cannot return to lobby: no match manager found to handle the request. Something is broken!");
+            }
+        }
+
+        public void QuitMatch()
+        {
+            var matchManager = FindObjectOfType<MatchManager>();
+            if (matchManager)
+            {
+                matchManager.QuitMatch();
+            }
+            else
+            {
+                //Backup solution in case the match manager bugs out for whatever reason
+                //Why would it ever bug out? I have no clue
+                SceneManager.LoadScene("Menu");
             }
         }
     }

@@ -55,7 +55,7 @@ namespace SanicballCore.Server
 		private const string DEFAULT_SERVER_LIST_URL = "https://sanicball.bdgr.zone/servers";
         private const int TICKRATE = 20;
         private const int STAGE_COUNT = 5; //Hardcoded stage count for now.. can't receive the actual count since it's part of a Unity prefab.
-        private readonly CharacterTier[] characterTiers = new[] { //Hardcoded character tiers, same reason
+        private readonly CharacterTier[] CHARACTER_TIERS = new[] { //Hardcoded character tiers, same reason
             CharacterTier.Normal,       //Sanic
             CharacterTier.Normal,       //Knackles
             CharacterTier.Normal,       //Taels
@@ -282,7 +282,7 @@ namespace SanicballCore.Server
             cmd =>
             {
                 int inputInt;
-                if (int.TryParse(cmd.Content, out inputInt) && inputInt >= 0 && inputInt < STAGE_COUNT)
+                if (int.TryParse(cmd.Content, out inputInt) && inputInt >= 0 && inputInt < config.stageCount)
                 {
                     matchSettings.StageId = inputInt;
                     SaveMatchSettings();
@@ -291,7 +291,7 @@ namespace SanicballCore.Server
                 }
                 else
                 {
-                    Log("Usage: setStage [0-" + (STAGE_COUNT - 1) + "]");
+                    Log("Usage: setStage [0-" + (config.stageCount - 1) + "]");
                 }
             });
             AddCommandHandler("setLaps",
@@ -442,7 +442,8 @@ namespace SanicballCore.Server
                 Console.WriteLine("No server configuration (" + CONFIG_FILENAME + ") found. ");
 
                 ServerConfig newConfig = new ServerConfig();
-
+                newConfig.stageCount = STAGE_COUNT;
+                newConfig.characterTiers = CHARACTER_TIERS;
                 while (string.IsNullOrEmpty(newConfig.ServerName))
                 {
                     Console.Write("Enter a server name: ");
@@ -1265,7 +1266,7 @@ namespace SanicballCore.Server
                         int newStage = matchSettings.StageId;
 
                         while (newStage == matchSettings.StageId)
-                            newStage = random.Next(STAGE_COUNT);
+                            newStage = random.Next(config.stageCount);
 
                         matchSettings.StageId = newStage;
                         matchSettingsChanged = true;
@@ -1274,7 +1275,7 @@ namespace SanicballCore.Server
                     case StageRotationMode.Sequenced:
                         Log("Picking next stage", LogType.Debug);
                         int nextStage = matchSettings.StageId + 1;
-                        if (nextStage >= STAGE_COUNT) nextStage = 0;
+                        if (nextStage >= config.stageCount) nextStage = 0;
                         matchSettings.StageId = nextStage;
                         matchSettingsChanged = true;
                         break;
@@ -1473,7 +1474,7 @@ namespace SanicballCore.Server
                     ServClient client = clients.FirstOrDefault(a => a.Guid == player.ClientGuid);
                     if (client != null)
                     {
-                        for (int i=0; i < characterTiers.Length; i++)
+                        for (int i=0; i < config.characterTiers.Length; i++)
                         {
                             if (VerifyCharacterTier(i))
                             {
@@ -1489,7 +1490,7 @@ namespace SanicballCore.Server
         }
 
         private bool VerifyCharacterTier(int id) {
-            CharacterTier t = characterTiers[id];
+            CharacterTier t = config.characterTiers[id];
             switch (matchSettings.AllowedTiers) {
                 case AllowedTiers.All:
                     return true;

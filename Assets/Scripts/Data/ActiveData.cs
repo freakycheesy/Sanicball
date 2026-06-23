@@ -99,6 +99,12 @@ namespace Sanicball.Data
             {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
+
+                if (Application.isMobilePlatform)
+                {
+                    Screen.sleepTimeout = 120;
+                    Application.targetFrameRate = 60;
+                }
             }
             else
             {
