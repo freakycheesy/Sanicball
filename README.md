@@ -5,7 +5,7 @@ However if you have trouble understanding parts the project structure or code yo
 
 The project is to be opened with Unity3D. It works best with version 2021.3.45f2
 
-The Game is hosted on https://gamejolt.com/games/sanicball/1079172
+The game is hosted on https://gamejolt.com/games/sanicball/1079172
 
 Also check out https://github.com/BK-TN/SanicballServerList, which lets you host a server list for the game.
 
