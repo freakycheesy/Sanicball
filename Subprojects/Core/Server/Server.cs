@@ -606,10 +606,6 @@ namespace SanicballCore.Server
                 AddToServerLists();
                 serverListPingTimer.Start();
             }
-            while (running)
-            {
-                Tick();
-            }
         }
 
         private bool LoadServerConfig()
@@ -797,20 +793,24 @@ namespace SanicballCore.Server
                 }
             }
 
-            //Check command queue
-            Command cmd;
-            while ((cmd = commandQueue.ReadNext()) != null)
+            if (!IsClient)
             {
-                CommandHandler handler;
-                if (commandHandlers.TryGetValue(cmd.Name, out handler))
+                //Check command queue
+                Command cmd;
+                while ((cmd = commandQueue.ReadNext()) != null)
                 {
-                    handler(cmd);
-                }
-                else
-                {
-                    Log("Command '" + cmd.Name + "' not found.");
+                    CommandHandler handler;
+                    if (commandHandlers.TryGetValue(cmd.Name, out handler))
+                    {
+                        handler(cmd);
+                    }
+                    else
+                    {
+                        Log("Command '" + cmd.Name + "' not found.");
+                    }
                 }
             }
+            
 
             //Check network message queue
             NetIncomingMessage msg;
@@ -1424,7 +1424,7 @@ namespace SanicballCore.Server
 
         #region Utility methods
 
-        private void SendToAll(MatchMessage matchMsg)
+        public void SendToAll(MatchMessage matchMsg)
         {
             Log("Sending message of type " + matchMsg.GetType() + " to " + netServer.Connections.Count + " connection(s)", LogType.Debug);
             if (netServer.ConnectionsCount == 0) return;

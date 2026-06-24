@@ -169,6 +169,7 @@ namespace Sanicball.UI
 
         private void UpdateUiFields()
         {
+            var manager = FindObjectOfType<MatchManager>();
             stage.text = ActiveData.Stages[tempSettings.StageId].name;
             laps.text = tempSettings.Laps.ToString();
             aiCount.text = tempSettings.AICount == 0 ? "None" : tempSettings.AICount.ToString();

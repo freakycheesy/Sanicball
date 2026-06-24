@@ -89,15 +89,15 @@ namespace Sanicball.UI
                 {
                     //Success, start the server
 
-                    /*string error;
-                    if (serverStarter.StartServer(serverNameInput.text, maxPlayers, port, useNat, showOnList, out error))
+                    string error;
+                    if (NetworkManager.instance.StartServer(serverNameInput.text, maxPlayers, port, useNat, showOnList, out error))
                     {
                         Debug.Log("Success!!");
                     }
                     else
                     {
                         portOutput.text = error;
-                    }*/
+                    }
                 }
                 else
                 {

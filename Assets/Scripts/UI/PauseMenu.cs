@@ -48,7 +48,7 @@ namespace Sanicball.UI
             {
                 contextSensitiveButtonLabel.text = "Change match settings";
                 contextSensitiveButton.onClick.AddListener(MatchSettings);
-                if (OnlineMode)
+                if (OnlineMode && !NetworkManager.isServer)
                 {
                     contextSensitiveButton.interactable = false;
                 }
@@ -126,6 +126,7 @@ namespace Sanicball.UI
                 //Why would it ever bug out? I have no clue
                 SceneManager.LoadScene("Menu");
             }
+            NetworkManager.instance.Close();
         }
     }
 }
