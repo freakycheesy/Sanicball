@@ -19,16 +19,16 @@ public class TouchGameInput : MonoBehaviour
     public static Vector2 GetCamera()
     {
         if (instance == null) return Vector2.zero;
-        if (!ActiveData.GameSettings.useOldControls)
+        if (ActiveData.GameSettings.useOldControls)
         {
-            return instance.cameraJoystick.Direction;
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Touch touch = Input.GetTouch(i);
+                if (touch.position.x > Screen.width / 2 && touch.phase == TouchPhase.Moved) return touch.deltaPosition * 0.1f;
+            }
+            return Vector2.zero;
         }
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            Touch touch = Input.GetTouch(i);
-            if(touch.position.x > Screen.width/2 && touch.phase == TouchPhase.Moved) return touch.deltaPosition * 0.1f;
-        }
-        return Vector2.zero;
+        return instance.cameraJoystick.Direction;
     }
     public static bool jump { get; set; }
     public static bool brake { get; set; }
