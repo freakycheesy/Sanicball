@@ -8,6 +8,7 @@ using Sanicball.UI;
 using SanicballCore;
 using SanicballCore.MatchMessages;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Sanicball.Logic
 {
@@ -478,10 +479,10 @@ namespace Sanicball.Logic
             loadingLobby = true;
             UnityEngine.SceneManagement.SceneManager.LoadScene(lobbySceneName);
         }
-
+        public static StageInfo currentStage { get; set; }
         public void GoToStage()
         {
-            var targetStage = ActiveData.Stages[currentSettings.StageId];
+            currentStage = ActiveData.Stages[currentSettings.StageId];
 
             loadingStage = true;
             loadingLobby = false;
@@ -491,7 +492,7 @@ namespace Sanicball.Logic
                 p.ReadyToRace = false;
             }
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene(targetStage.sceneName);
+            Addressables.LoadSceneAsync(currentStage.scene);
         }
 
         //Check if we were loading the lobby or the race

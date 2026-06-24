@@ -7,7 +7,7 @@ namespace Sanicball.Data
     {
         public string name;
         public int id;
-        public string sceneName;
+        public SceneReference scene;
         public Sprite picture;
         public GameObject overviewPrefab;
     }

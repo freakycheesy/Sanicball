@@ -24,10 +24,10 @@ namespace Sanicball.Data
         //This data is set from the editor and remains constant
         [Header("Static data")]
         [SerializeField]
-        private StageInfo[] stages;
+        private List<StageInfo> stages;
 
         [SerializeField]
-        private CharacterInfo[] characters;
+        private List<CharacterInfo> characters;
 
         [SerializeField]
         private GameJoltInfo gameJoltInfo;
@@ -52,8 +52,8 @@ namespace Sanicball.Data
         public static MatchSettings MatchSettings { get { return instance.matchSettings; } set { instance.matchSettings = value; } }
         public static List<RaceRecord> RaceRecords { get { return instance.raceRecords; } }
 
-        public static StageInfo[] Stages { get { return instance.stages; } }
-        public static CharacterInfo[] Characters { get { return instance.characters; } }
+        public static StageInfo[] Stages { get { return instance.stages.ToArray(); } }
+        public static CharacterInfo[] Characters { get { return instance.characters.ToArray(); } }
         public static GameJoltInfo GameJoltInfo { get { return instance.gameJoltInfo; } }
         public static GameObject ChristmasHat { get { return instance.christmasHat; } }
         public static Material ESportsTrail {get{return instance.eSportsTrail;}}

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Stages
+  m_EditorClassIdentifier: 
+  m_GroupName: Stages
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b6fdc6ace76b76743b7d0c95dfd40f9c
+  m_SerializeEntries:
+  - m_GUID: a786b0209e96abe4c8fd49cc4d26f4ac
+    m_Address: Assets/Scenes/Stages/Track_Desert.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8912b8b165639fe4285eff0f6d6d3b66
+    m_Address: Assets/Scenes/Stages/Track_FlameCore.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dd3bbb09ce1af034192ad01d199b5a98
+    m_Address: Assets/Scenes/Stages/Track_GreenHillZone.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c6ff669b6a5dbd44bba8bdd7dbef35ff
+    m_Address: Assets/Scenes/Stages/Track_RainbowRoad.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b2b8ab8885b2c404985feb6cf44156e0
+    m_Address: Assets/Scenes/Stages/Track_SnowyMountain.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bdc83f068093f9e48b709f3f10c58e1c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bf288ad3414d8e94491555494295380b, type: 2}
+    - {fileID: 11400000, guid: fd2610de92baf804b9b4716395023ad0, type: 2}
