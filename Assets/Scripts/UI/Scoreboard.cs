@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
@@ -16,12 +17,30 @@ namespace Sanicball.UI
         private RectTransform entryContainer = null;
         [SerializeField]
         private SlideCanvasGroup slide = null;
+        [SerializeField]
+        private GameObject selectedButton = null;
+        [SerializeField]
+        private Button restartButton = null;
 
         private bool slideShouldOpen = false;
-        public GameObject selectedButton;
+        
         private void OnEnable()
         {
             EventSystem.current.SetSelectedGameObject(selectedButton);
+
+            if (FindObjectOfType<MatchManager>().OnlineMode)
+            {
+                Destroy(restartButton.gameObject);
+            }
+        }
+        
+        public void RestartRace()
+        {
+            var matchManager = FindObjectOfType<MatchManager>();
+            if (matchManager && !matchManager.OnlineMode)
+            {
+                matchManager.GoToStage();
+            }
         }
 
         private List<ScoreboardEntry> activeEntries = new List<ScoreboardEntry>();

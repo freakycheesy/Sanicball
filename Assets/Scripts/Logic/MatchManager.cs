@@ -16,6 +16,7 @@ namespace Sanicball.Logic
     /// </summary>
     public class MatchManager : MonoBehaviour
     {
+        public static MatchManager instance => FindObjectOfType<MatchManager>();
         #region Events
 
         public event EventHandler<MatchPlayerEventArgs> MatchPlayerAdded;
@@ -469,7 +470,7 @@ namespace Sanicball.Logic
 
         #region Scene changing / race loading
 
-        private void GoToLobby()
+        public void GoToLobby()
         {
             if (inLobby) return;
 
@@ -478,7 +479,7 @@ namespace Sanicball.Logic
             UnityEngine.SceneManagement.SceneManager.LoadScene(lobbySceneName);
         }
 
-        private void GoToStage()
+        public void GoToStage()
         {
             var targetStage = ActiveData.Stages[currentSettings.StageId];
 
@@ -491,7 +492,6 @@ namespace Sanicball.Logic
             }
 
             UnityEngine.SceneManagement.SceneManager.LoadScene(targetStage.sceneName);
-            ;
         }
 
         //Check if we were loading the lobby or the race

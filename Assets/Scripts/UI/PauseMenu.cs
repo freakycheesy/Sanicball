@@ -16,6 +16,8 @@ namespace Sanicball.UI
         private Button contextSensitiveButton;
         [SerializeField]
         private Text contextSensitiveButtonLabel;
+        [SerializeField]
+        private Button restartButton;
 
         private bool mouseWasLocked;
 
@@ -39,10 +41,10 @@ namespace Sanicball.UI
             if (!OnlineMode)
             {
                 Time.timeScale = 0;
-                AudioListener.pause = true;
-            }
+                AudioListener.pause = true;              
+            }       
 
-            if (SceneManager.GetActiveScene().name == "Lobby")
+            if (MatchManager.instance.InLobby)
             {
                 contextSensitiveButtonLabel.text = "Change match settings";
                 contextSensitiveButton.onClick.AddListener(MatchSettings);
@@ -50,11 +52,16 @@ namespace Sanicball.UI
                 {
                     contextSensitiveButton.interactable = false;
                 }
+                Destroy(restartButton.gameObject);
             }
             else
             {
                 contextSensitiveButtonLabel.text = "Return to lobby";
                 contextSensitiveButton.onClick.AddListener(BackToLobby);
+                if (OnlineMode)
+                {
+                    Destroy(restartButton.gameObject);
+                }
             }
         }
 
@@ -81,6 +88,15 @@ namespace Sanicball.UI
         {
             LobbyReferences.Active.MatchSettingsPanel.Show();
             Close();
+        }
+
+        public void RestartRace()
+        {
+            var matchManager = FindObjectOfType<MatchManager>();
+            if (matchManager && !matchManager.OnlineMode)
+            {
+                matchManager.GoToStage();
+            }
         }
 
         public void BackToLobby()
