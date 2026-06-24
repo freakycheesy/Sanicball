@@ -29,6 +29,7 @@ namespace Sanicball.UI
         public void Apply()
         {
             ActiveData.Keybinds.CopyValues(tempKeybinds);
+            ActiveData.instance.SaveAll();
         }
 
         public void RevertToCurrent()

@@ -45,6 +45,7 @@ namespace Sanicball.UI
         {
             ActiveData.GameSettings.CopyValues(tempSettings);
             ActiveData.GameSettings.Apply(true);
+            ActiveData.instance.SaveAll();
         }
 
         public void RevertToCurrent()

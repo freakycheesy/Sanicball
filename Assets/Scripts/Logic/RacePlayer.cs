@@ -244,7 +244,7 @@ namespace Sanicball.Logic
                         GameVersion.AS_FLOAT,
                         GameVersion.IS_TESTING
                         ));
-
+                    ActiveData.instance.SaveAll();
                     Debug.Log("Saved lap record (" + TimeSpan.FromSeconds(lapTime) + ")");
                 }
 

@@ -13,7 +13,7 @@ namespace Sanicball.Data
         public List<RaceRecord> raceRecords = new List<RaceRecord>();
 
         //Pseudo-singleton pattern - this field accesses the current instance.
-        private static ActiveData instance;
+        public static ActiveData instance;
 
         //This data is saved to a json file
         private GameSettings gameSettings = new GameSettings();
