@@ -1,3 +1,4 @@
+using Sanicball.Data;
 using Sanicball.Logic;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,16 @@ public class TouchGameInput : MonoBehaviour
     public static Vector2 GetCamera()
     {
         if (instance == null) return Vector2.zero;
-        return instance.cameraJoystick.Direction;
+        if (!ActiveData.GameSettings.useOldControls)
+        {
+            return instance.cameraJoystick.Direction;
+        }
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Touch touch = Input.GetTouch(i);
+            if(touch.position.x > Screen.width/2 && touch.phase == TouchPhase.Moved) return touch.deltaPosition * 0.1f;
+        }
+        return Vector2.zero;
     }
     public static bool jump { get; set; }
     public static bool brake { get; set; }
@@ -53,7 +63,8 @@ public class TouchGameInput : MonoBehaviour
     public Text actionAText;
     public Text actionBText;
     private void Update()
-    { 
+    {
+        cameraJoystick.gameObject.SetActive(!ActiveData.GameSettings.useOldControls);
         var matchManager = FindObjectOfType<MatchManager>();
         if (matchManager == null)
         {
