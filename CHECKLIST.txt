@@ -1,0 +1,11 @@
+qol
+- add pinch zoom on mobile
+important
+- edit versions on sanicballcore
+extra
+- fix smoothness on terrain
+- add old greenhillzone
+- add sanicloops
+- add jungle stage
+- add seaside hill
+- add casino night
