@@ -1,13 +1,17 @@
 # Sanicball
 
 Sanicball is discontinued and I will not be accepting any pull requests.
-However if you have trouble understanding parts the project structure or code you can message me directly (viciousbadger@protonmail.com), I'll try to help out.
+However if you have trouble understanding parts the project structure or code you can message @freakycheesy/cheesygamesdev@gmail.com or viciousbadger@protonmail.com directly
 
 The project is to be opened with Unity3D. It works best with version 2021.3.45f2
 
 The game is hosted on https://gamejolt.com/games/sanicball/1079172
 
 Also check out https://github.com/BK-TN/SanicballServerList, which lets you host a server list for the game.
+
+Official Sanicball Discord: https://discord.gg/0ugyklGsV5SmNs3F
+
+The Toilet Paper Community for Updates: https://discord.gg/TCA2bcJfvM
 
 ## Copyright notice
 
