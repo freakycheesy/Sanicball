@@ -17,7 +17,7 @@ namespace SanicballServer
             bool serverClosed = false;
             while (!serverClosed)
             {
-                using (Server serv = new Server(commandQueue))
+                using (Server serv = new Server(commandQueue, false, "ServerConfig.json", "MatchSettings.json", "MOTD.txt"))
                 {
                     serv.OnLog += (sender, e) =>
                     {
@@ -56,6 +56,10 @@ namespace SanicballServer
                     {
                         serv.Start();
 
+                        while (serv.running)
+                        {
+                            serv.Tick();
+                        }
                         //Wait until server closes
 
                         serverClosed = true;
