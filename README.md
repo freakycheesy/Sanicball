@@ -11,4 +11,4 @@ Also check out https://github.com/BK-TN/SanicballServerList, which lets you host
 
 ## Copyright notice
 
-The MIT license covers all source code and any original assets created by me (BK-TN). Sanicball contains images and music created by third parties and used without permission by original authors. By distributing these assets you acknowledge the legal risk involved. Furthermore, I do not recommend or condone selling the game or making money off of it in any way.
+The MIT license covers all source code and any original assets created by BK-TN and freakycheesy. Sanicball contains images and music created by third parties and used without permission by original authors. By distributing these assets you acknowledge the legal risk involved. Furthermore, I do not recommend or condone selling the game or making money off of it in any way.
