@@ -61,7 +61,7 @@ public class NetworkManager : MonoBehaviour
         config.stageCount = ActiveData.Stages.Length;
         config.characterTiers = ActiveData.Characters.Select(x => x.tier).ToArray();
         config.PrivatePort = port;
-        config.PublicIP = new WebClient().DownloadString("http://ipinfo.io/ip").Trim();
+        config.PublicIP = new WWW("http://ipinfo.io/ip").text.Trim();
         config.PublicPort = port;
         config.MaxPlayers = maxPlayers;
         File.WriteAllText(ServerConfigPath, JsonConvert.SerializeObject(config));

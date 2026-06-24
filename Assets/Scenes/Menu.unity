@@ -1798,7 +1798,7 @@ MonoBehaviour:
         m_MethodName: SetSelectedGameObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 491273133}
+          m_ObjectArgument: {fileID: 1775660998}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5245,12 +5245,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490558559}
   m_CullTransparentMesh: 1
---- !u!1 &491273133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 138764, guid: e5d237d0846d27944a3a24718ef6c22f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1071631087}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &505908820 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11424744, guid: 348966db71fa603449cae3efa7eda193,
@@ -9760,7 +9754,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1071631087}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491273133}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -16829,12 +16823,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1775660995}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1775660998}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1775660998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 138764, guid: e5d237d0846d27944a3a24718ef6c22f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1775660995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1781309970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18419,8 +18419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34624d569f253014bade8c10af13161f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionChange: {x: -200, y: 0}
-  sizeChange: {x: -400, y: 0}
+  positionChange: {x: -300, y: 0}
+  sizeChange: {x: -600, y: 0}
   time: 0.5
 --- !u!114 &2089971284 stripped
 MonoBehaviour:

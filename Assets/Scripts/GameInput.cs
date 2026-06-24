@@ -76,6 +76,9 @@ namespace Sanicball
 
                 case ControlType.Joystick4:
                     return "Joystick #4";
+
+                case ControlType.Touch:
+                    return "Touch";
             }
             return null;
         }

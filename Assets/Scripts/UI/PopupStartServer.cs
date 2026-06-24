@@ -22,7 +22,7 @@ namespace Sanicball.UI
         public Slideshow slideshow;
 
         private int maxPlayers = 12;
-        private bool showOnList = true;
+        private bool showOnList = false;
         private bool useNat = false;
 
         public void MaxPlayersUp()
@@ -113,7 +113,7 @@ namespace Sanicball.UI
         private void Start()
         {
             UpdateFields();
-            showOnServerListText.text = "Yes";
+            showOnServerListText.text = "No";
             enableNatPunchingText.text = "No";
         }
 

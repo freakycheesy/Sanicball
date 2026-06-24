@@ -76,7 +76,7 @@ namespace Sanicball.UI
             if (visibleTime > 0)
             {
                 visibleTime -= Time.deltaTime;
-                canvasGroup.alpha = 1;
+                canvasGroup.alpha = 0.8f;
             }
             else if (canvasGroup.alpha > 0)
             {
