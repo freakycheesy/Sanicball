@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SanicballCore.Server;
+using UnityEngine;
 
 namespace Sanicball.Data
 {
@@ -7,7 +8,7 @@ namespace Sanicball.Data
     {
         [Header("Online")]
         public string nickname = "";
-        public string serverListURL = "https://sanicball.bdgr.zone/servers/";
+        public string serverListURL = Server.DEFAULT_SERVER_LIST_URL;
 
         public string gameJoltUsername;
         public string gameJoltToken;

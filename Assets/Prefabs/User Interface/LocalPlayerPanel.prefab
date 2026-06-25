@@ -503,6 +503,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f041746130aed1544ab15b88e8fe8017, type: 3}
   - {fileID: 21300000, guid: 50fa2603424d9b84e9433af74b6b81c6, type: 3}
   - {fileID: 21300000, guid: ba3cd10b76ae1bd48a83dd7a3ef18ca5, type: 3}
+  - {fileID: 21300000, guid: f73cf06549e7fab49ac88ed0e6d6554f, type: 3}
   characterSelectSubpanel: {fileID: 11418584}
 --- !u!1 &158568
 GameObject:

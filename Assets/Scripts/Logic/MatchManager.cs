@@ -85,7 +85,7 @@ namespace Sanicball.Logic
 
         //Match messenger used to send and receive state changes.
         //This will be either a LocalMatchMessenger or OnlineMatchMessenger, but each are used the same way.
-        private MatchMessenger messenger;
+        public MatchMessenger messenger { get; private set; }
 
         private UI.Chat activeChat;
 
@@ -113,7 +113,7 @@ namespace Sanicball.Logic
         /// <summary>
         /// Current settings for this match. On remote clients, this is only used for showing settings on the UI.
         /// </summary>
-        public MatchSettings CurrentSettings { get { return currentSettings; } }
+        public MatchSettings CurrentSettings { get { return currentSettings; } set { currentSettings = value; } }
 
         public Guid LocalClientGuid { get { return myGuid; } }
 
@@ -128,6 +128,11 @@ namespace Sanicball.Logic
         public void RequestSettingsChange(MatchSettings newSettings)
         {
             messenger.SendMessage(new SettingsChangedMessage(newSettings));
+            if (NetworkManager.isServer)
+            {
+                NetworkManager.server.matchSettings = newSettings;
+                NetworkManager.server.SendToAll(new SettingsChangedMessage(newSettings));
+            }
         }
 
         public void RequestPlayerJoin(ControlType ctrlType, int initialCharacter)
@@ -315,7 +320,7 @@ namespace Sanicball.Logic
             }
 
             //Set settings
-            currentSettings = matchState.Settings;
+            currentSettings = NetworkManager.isServer ? NetworkManager.server.matchSettings : matchState.Settings;
 
             //Set auto start timer
             //TODO Get and apply travel time

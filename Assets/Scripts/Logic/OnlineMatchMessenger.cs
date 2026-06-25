@@ -33,7 +33,7 @@ namespace Sanicball.Logic
     {
         public const string APP_ID = "Sanicball";
 
-        private NetClient client;
+        public NetClient client { get; private set; }
 
         //Settings to use for both serializing and deserializing messages
         private Newtonsoft.Json.JsonSerializerSettings serializerSettings;

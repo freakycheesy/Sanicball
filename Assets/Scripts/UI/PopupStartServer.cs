@@ -22,7 +22,7 @@ namespace Sanicball.UI
         public Slideshow slideshow;
 
         private int maxPlayers = 12;
-        private bool showOnList = true;
+        private bool showOnList = false;
         private bool useNat = false;
 
         public void MaxPlayersUp()
@@ -89,15 +89,15 @@ namespace Sanicball.UI
                 {
                     //Success, start the server
 
-                    /*string error;
-                    if (serverStarter.StartServer(serverNameInput.text, maxPlayers, port, useNat, showOnList, out error))
+                    string error;
+                    if (NetworkManager.StartServer(serverNameInput.text, maxPlayers, port, useNat, showOnList, out error))
                     {
                         Debug.Log("Success!!");
                     }
                     else
                     {
                         portOutput.text = error;
-                    }*/
+                    }
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace Sanicball.UI
         private void Start()
         {
             UpdateFields();
-            showOnServerListText.text = "Yes";
+            showOnServerListText.text = "No";
             enableNatPunchingText.text = "No";
         }
 

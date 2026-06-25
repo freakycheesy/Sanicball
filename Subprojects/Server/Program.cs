@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using SanicballCore;
 using SanicballCore.Server;
 
 namespace SanicballServer
@@ -14,6 +15,10 @@ namespace SanicballServer
 
         private static void Main(string[] args)
         {
+            SanicLogger.NormalLog += Console.WriteLine;
+            SanicLogger.DebugLog += Console.WriteLine;
+            SanicLogger.WarnLog += Console.WriteLine;
+            SanicLogger.ErrorLog += Console.WriteLine;
             bool serverClosed = false;
             while (!serverClosed)
             {

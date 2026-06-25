@@ -71,6 +71,7 @@
     <Compile Include="MatchSettings.cs" />
     <Compile Include="MatchState.cs" />
     <Compile Include="MessageType.cs" />
+    <Compile Include="SanicLogger.cs" />
     <Compile Include="Server\Command.cs" />
     <Compile Include="Server\CommandQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
