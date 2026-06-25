@@ -90,7 +90,7 @@ namespace Sanicball.UI
                     //Success, start the server
 
                     string error;
-                    if (NetworkManager.instance.StartServer(serverNameInput.text, maxPlayers, port, useNat, showOnList, out error))
+                    if (NetworkManager.StartServer(serverNameInput.text, maxPlayers, port, useNat, showOnList, out error))
                     {
                         Debug.Log("Success!!");
                     }

@@ -450,20 +450,20 @@ namespace SanicballCore.Server
 
                 if (!File.Exists(ServerConfigPath))
                 {
-                    Console.WriteLine("No server configuration (" + ServerConfigPath + ") found. ");
+                    SanicLogger.WarnLog("No server configuration (" + ServerConfigPath + ") found. ");
 
                     ServerConfig newConfig = new ServerConfig();
                     newConfig.stageCount = STAGE_COUNT;
                     newConfig.characterTiers = CHARACTER_TIERS;
                     while (string.IsNullOrEmpty(newConfig.ServerName))
                     {
-                        Console.Write("Enter a server name: ");
+                        SanicLogger.NormalLog("Enter a server name: ");
                         newConfig.ServerName = Console.ReadLine().Trim();
                     }
 
                     while (newConfig.PrivatePort == 0)
                     {
-                        Console.Write("Enter a port to use (Leave blank to use 25000): ");
+                        SanicLogger.NormalLog("Enter a port to use (Leave blank to use 25000): ");
 
                         string input = Console.ReadLine();
                         if (input.Trim() == string.Empty)
@@ -482,7 +482,7 @@ namespace SanicballCore.Server
 
                     while (newConfig.MaxPlayers <= 0 || newConfig.MaxPlayers > 64)
                     {
-                        Console.Write("Enter max players (1-64): ");
+                        SanicLogger.NormalLog("Enter max players (1-64): ");
                         string input = Console.ReadLine();
 
                         int inputInt;
@@ -495,7 +495,7 @@ namespace SanicballCore.Server
                     bool inputCorrect = false;
                     while (!inputCorrect)
                     {
-                        Console.Write("Show this server on one or more server lists? If no, players can still connect by IP (yes|no): ");
+                        SanicLogger.NormalLog("Show this server on one or more server lists? If no, players can still connect by IP (yes|no): ");
                         string input = Console.ReadLine();
                         if (input == "yes")
                         {
@@ -513,7 +513,7 @@ namespace SanicballCore.Server
                     {
                         while (newConfig.ServerListURLs == null)
                         {
-                            Console.Write("Enter one or more URL(s) for server lists this server should appear on, seperated by space (Leave blank to use the default list, '" + DEFAULT_SERVER_LIST_URL + "'):");
+                            SanicLogger.NormalLog("Enter one or more URL(s) for server lists this server should appear on, seperated by space (Leave blank to use the default list, '" + DEFAULT_SERVER_LIST_URL + "'):");
                             string input = Console.ReadLine().Trim();
 
                             if (string.IsNullOrEmpty(input))
@@ -529,13 +529,13 @@ namespace SanicballCore.Server
 
                         while (string.IsNullOrEmpty(newConfig.PublicIP))
                         {
-                            Console.Write("Enter the public IP adress to use when connecting from the server browser (If behind a router, remember to port forward): ");
+                            SanicLogger.NormalLog("Enter the public IP adress to use when connecting from the server browser (If behind a router, remember to port forward): ");
                             newConfig.PublicIP = Console.ReadLine().Trim();
                         }
 
                         while (newConfig.PublicPort == 0)
                         {
-                            Console.Write("Enter the public port use when connecting from the server browser (Leave blank to use private port - if you are unsure just do this): ");
+                            SanicLogger.NormalLog("Enter the public port use when connecting from the server browser (Leave blank to use private port - if you are unsure just do this): ");
 
                             string input = Console.ReadLine();
                             if (input.Trim() == string.Empty)
@@ -556,7 +556,7 @@ namespace SanicballCore.Server
                     using (StreamWriter sw = new StreamWriter(ServerConfigPath))
                     {
                         sw.Write(JsonConvert.SerializeObject(newConfig));
-                        Console.WriteLine("Config saved! If you want to modify match settings, this is done using the commands listed when entering 'help'.");
+                        SanicLogger.NormalLog("Config saved! If you want to modify match settings, this is done using the commands listed when entering 'help'.");
                     }
 
                     #endregion Server config wizard
@@ -575,7 +575,7 @@ namespace SanicballCore.Server
                 using (StreamWriter sw = new StreamWriter(MatchSettingsPath))
                 {
                     sw.Write(JsonConvert.SerializeObject(matchSettings));
-                    Console.WriteLine("Config saved! If you want to modify match settings, this is done using the commands listed when entering 'help'.");
+                    SanicLogger.NormalLog("Config saved! If you want to modify match settings, this is done using the commands listed when entering 'help'.");
                 }
             }
 
@@ -1479,6 +1479,22 @@ namespace SanicballCore.Server
                 LogEntry entry = new LogEntry(DateTime.Now, "[" + DateTime.Now.ToString("HH:mm:ss") + "] " + message.ToString(), type);
                 OnLog?.Invoke(this, new LogArgs(entry));
                 log.Add(entry);
+
+                switch (type)
+                {
+                    case LogType.Normal:
+                        SanicLogger.NormalLog?.Invoke(message);
+                        break;
+                    case LogType.Debug:
+                        SanicLogger.DebugLog?.Invoke(message);
+                        break;                
+                    case LogType.Warning:
+                        SanicLogger.WarnLog?.Invoke(message);
+                        break;
+                    case LogType.Error:
+                        SanicLogger.ErrorLog?.Invoke(message);
+                        break;
+                }
             }
         }
 
@@ -1537,6 +1553,10 @@ namespace SanicballCore.Server
                     return t == CharacterTier.Hyperspeed;
                 case AllowedTiers.NoHyperspeed:
                     return t != CharacterTier.Hyperspeed;
+                case AllowedTiers.NoOdd:
+                    return t != CharacterTier.Odd;
+                case AllowedTiers.NoNormal:
+                    return t != CharacterTier.Normal;
                 default:
                     return true;
             }
@@ -1554,6 +1574,10 @@ namespace SanicballCore.Server
                     return "Only characters from the Hyperspeed tier are allowed.";
                 case AllowedTiers.NoHyperspeed:
                     return "Any character NOT from the Hyperspeed tier is allowed.";
+                case AllowedTiers.NoOdd:
+                    return "Any character NOT from the Odd tier is allowed.";
+                case AllowedTiers.NoNormal:
+                    return "Any character NOT from the Normal tier is allowed.";
                 default:
                     return "All characters are allowed.";
             }

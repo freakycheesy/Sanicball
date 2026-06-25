@@ -26,6 +26,8 @@ namespace SanicballCore
 		OddOnly,
 		HyperspeedOnly,
 		NoHyperspeed,
+        NoOdd,
+        NoNormal
 	}
 
     public enum TierRotationMode
