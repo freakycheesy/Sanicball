@@ -101,6 +101,7 @@ namespace Sanicball.UI
                     Destroy(restartButton.gameObject);
                 }
             }
+            CloseServerPanel();
         }
 
         public void Close()
