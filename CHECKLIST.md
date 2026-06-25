@@ -2,7 +2,6 @@
 - add pinch zoom on mobile
 # important
 - edit versions on sanicballcore
-- Add Player List to pause menu
 # extra
 - add freakycheesy as a character
 - fix smoothness on terrain
