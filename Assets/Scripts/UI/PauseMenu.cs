@@ -140,6 +140,7 @@ namespace Sanicball.UI
 
         public void OpenServerPanel()
         {
+            if (!OnlineMode) return;
             serverPanel.gameObject.SetActive(true);
             EventSystem.current.SetSelectedGameObject(firstServerSelected);
             var settings = MatchManager.instance.CurrentSettings;
@@ -158,6 +159,7 @@ namespace Sanicball.UI
 
         public void CloseServerPanel()
         {
+            if (!OnlineMode) return;
             serverPanel.gameObject.SetActive(false);
             EventSystem.current.SetSelectedGameObject(firstSelected);
             foreach(var client in clients.ToArray())

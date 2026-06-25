@@ -190,7 +190,7 @@ namespace Sanicball
                 case ControlType.Joystick4:
                     return new Vector2(Input.GetAxis(joystick4RightX), Input.GetAxis(joystick4RightY));
                 case ControlType.Touch:
-                    return TouchGameInput.GetCamera();
+                        return TouchGameInput.GetCamera();
             }
             return Vector2.zero;
         }
@@ -394,5 +394,31 @@ namespace Sanicball
         }
 
         #endregion Keyboard only input
+
+        public static float Zoom(ControlType ctrlType)
+        {
+            switch (ctrlType)
+            {
+                case ControlType.Keyboard:
+                    return Input.GetAxis("Mouse ScrollWheel") * 2;
+                case ControlType.Touch:
+                    for (int i = 0; i < Input.touchCount; i++)
+                    {
+                        if(i >= Input.touchCount || i + 1 >= Input.touchCount) continue;
+                        Touch touch1 = Input.GetTouch(i);
+                        Touch touch2 = Input.GetTouch(i + 1);
+                        if (touch1.position.x < Screen.width / 2 || touch2.position.x < Screen.width / 2) continue;
+                        Vector2 touch1Prev = touch1.position - touch1.deltaPosition;
+                        Vector2 touch2Prev = touch2.position - touch2.deltaPosition;
+                        float prevMag = (touch1Prev - touch2Prev).magnitude;
+                        float curMag = (touch1.position - touch2.position).magnitude;
+
+                        float difference = curMag - prevMag;
+                        return difference * 0.01f;
+                    }
+                    return 0;
+            }
+            return 0;
+        }
     }
 }

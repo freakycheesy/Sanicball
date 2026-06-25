@@ -17,7 +17,10 @@ namespace Sanicball
             float z = instance.movementJoystick.Vertical;
             return new Vector3(x, 0, z).normalized;
         }
-
+        /// <summary>
+        /// MOM GET THE CAMERA
+        /// </summary>
+        /// <returns></returns>
         public static Vector2 GetCamera()
         {
             if (instance == null) return Vector2.zero;

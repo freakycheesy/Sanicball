@@ -121,7 +121,7 @@ namespace Sanicball.Gameplay
             }
 
             //Zooming
-            cameraDistanceTarget = Mathf.Clamp(cameraDistanceTarget - (Input.GetAxis("Mouse ScrollWheel") * 2), 0, 10);
+            cameraDistanceTarget = Mathf.Clamp(cameraDistanceTarget - GameInput.Zoom(CtrlType), 0, 10);
             cameraDistance = Mathf.Lerp(cameraDistance, cameraDistanceTarget, Time.deltaTime * 4);
             //Moving to the target
             transform.position = Target.transform.position;
