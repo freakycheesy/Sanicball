@@ -1,5 +1,4 @@
 # qol
-- add pinch zoom on mobile
 # important
 - edit versions on sanicballcore
 # extra
