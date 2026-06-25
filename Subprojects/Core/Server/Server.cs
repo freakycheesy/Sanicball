@@ -49,7 +49,7 @@ namespace SanicballCore.Server
 
     public class Server : IDisposable
     {
-        private const string DEFAULT_SERVER_LIST_URL = "https://sanicball.bdgr.zone/servers";
+        public const string DEFAULT_SERVER_LIST_URL = "http://ayunami2000.pythonanywhere.com/";
         private const int STAGE_COUNT = 5; //Hardcoded stage count for now.. can't receive the actual count since it's part of a Unity prefab.
         private readonly CharacterTier[] CHARACTER_TIERS = new[] { //Hardcoded character tiers, same reason
             CharacterTier.Normal,       //Sanic
