@@ -710,6 +710,7 @@ PlayerSettings:
   scriptingBackend:
     Android: 1
     Metro: 2
+    Server: 1
     Standalone: 1
     WP8: 2
     WebGL: 1
